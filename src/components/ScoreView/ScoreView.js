@@ -24,13 +24,15 @@ function ScoreView({questions, userAnswers}) {
   return (
     <SafeAreaView>
       <Header />
-      <View style={styles.container}>
-        <Text style={styles.h1}>Félicitations !</Text>
-        <Text style={styles.h2}>Voici votre score</Text>
-        <View style={styles.questionNumberContainer}>
-          <Text style={styles.qstNbText}>
-            {score} / {questions.length * 5}
-          </Text>
+      <View style={styles.mainContainer}>
+        <View style={styles.container}>
+          <Text style={styles.h1}>Félicitations !</Text>
+          <Text style={styles.h2}>Voici votre score</Text>
+          <View style={styles.questionNumberContainer}>
+            <Text style={styles.qstNbText}>
+              {score} / {questions.length * 5}
+            </Text>
+          </View>
         </View>
       </View>
     </SafeAreaView>
@@ -40,12 +42,20 @@ function ScoreView({questions, userAnswers}) {
 export default connect(mapStateToProps)(ScoreView);
 
 const styles = StyleSheet.create({
-  container: {
+  mainContainer: {
     width: '100%',
     height: '30%',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  container: {
+    width: '80%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
     marginTop: Dimensions.get('window').height * 0.12,
+    elevation: 1,
+    borderRadius: 2,
   },
   h1: {
     color: '#000',
@@ -60,7 +70,7 @@ const styles = StyleSheet.create({
   },
   questionNumberContainer: {
     marginTop: Dimensions.get('window').height * 0.01,
-    width: '20%',
+    width: '25%',
     height: '35%',
     borderRadius: 5,
     backgroundColor: '#89CFF0',
