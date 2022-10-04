@@ -20,13 +20,11 @@ function QstNbTime({questionNumber, questions, index, dispatch}) {
   };
 
   setTimeout(() => {
-    // mins > 0 || secs > 0
-    //   ? secs > 0
-    //     ? setSecs(secs - 1)
-    //     : (setMins(mins - 1), setSecs(59))
-    //   : mins == 0 && secs == 0
-    //   ? timedOut()
-    //   : null;
+    mins > 0 || secs > 0
+      ? secs > 0
+        ? setSecs(secs - 1)
+        : (setMins(mins - 1), setSecs(59))
+      : null;
   }, 1000);
 
   return (
