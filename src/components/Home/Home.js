@@ -44,7 +44,7 @@ const QUESTIONS = [
   },
 ];
 
-function Home({dispatch}) {
+function Home({dispatch, navigation}) {
   const user = {
     name: 'Houssame',
   };
@@ -60,7 +60,7 @@ function Home({dispatch}) {
 
   return (
     <SafeAreaView>
-      <QuestionView />
+      <QuestionView navigation={navigation} />
     </SafeAreaView>
   );
 }

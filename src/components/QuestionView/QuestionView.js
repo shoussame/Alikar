@@ -24,7 +24,7 @@ function QuestionView({index, questions, userAnswers, dispatch, navigation}) {
   const [selection, setSelection] = useState(false);
 
   const _submitAction = () => {
-    if (index < questions.length) {
+    if (index + 1 < questions.length) {
       var action = {type: 'INCREMENT_INDEX', value: {index: index + 1}};
       dispatch(action);
       action = {

@@ -1,7 +1,12 @@
 import {View, Text, StyleSheet, Dimensions, Alert} from 'react-native';
 import React, {useState} from 'react';
+import {connect} from 'react-redux';
 
-export default function QstNbTime({questionNumber, questions}) {
+const mapStateToProps = state => ({
+  index: state.scoreReducer.index,
+});
+
+function QstNbTime({questionNumber, questions, index, dispatch}) {
   const TIME = questions[questionNumber].time;
   const minutes = Math.floor(TIME / 60);
   const seconds = TIME - minutes * 60;
@@ -10,15 +15,18 @@ export default function QstNbTime({questionNumber, questions}) {
   const [secs, setSecs] = useState(seconds);
 
   const timedOut = () => {
-    Alert.alert('Time out !');
+    var action = {type: 'INCREMENT_INDEX', value: {index: index + 1}};
+    dispatch(action);
   };
 
   setTimeout(() => {
-    mins > 0 || secs > 0
-      ? secs > 0
-        ? setSecs(secs - 1)
-        : (setMins(mins - 1), setSecs(59))
-      : null;
+    // mins > 0 || secs > 0
+    //   ? secs > 0
+    //     ? setSecs(secs - 1)
+    //     : (setMins(mins - 1), setSecs(59))
+    //   : mins == 0 && secs == 0
+    //   ? timedOut()
+    //   : null;
   }, 1000);
 
   return (
@@ -45,6 +53,8 @@ export default function QstNbTime({questionNumber, questions}) {
     </View>
   );
 }
+
+export default connect(mapStateToProps)(QstNbTime);
 
 const styles = StyleSheet.create({
   mainContainer: {
